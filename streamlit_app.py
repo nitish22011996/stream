@@ -3,7 +3,7 @@ import leafmap.foliumap as leafmap
 import pandas as pd
 
 # Load the CSV data
-df = pd.read_csv("F:/Downloads/app_data.csv")
+df = pd.read_csv("app_data.csv")
 
 # App title
 st.title('Interactive Lake Map')
