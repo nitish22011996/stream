@@ -44,6 +44,6 @@ map_path = "map.html"
 m.to_html(outfile=map_path)
 HtmlFile = open(map_path, 'r', encoding='utf-8')
 source_code = HtmlFile.read() 
-components.v1.html(source_code, height=600)
+components.html(source_code, height=600)
 
 
