@@ -1,7 +1,7 @@
 import streamlit as st
 import leafmap.foliumap as leafmap
 import pandas as pd
-
+import streamlit.components.v1 as components
 # Load the CSV data
 df = pd.read_csv("app_data.csv")
 
@@ -44,6 +44,6 @@ map_path = "map.html"
 m.to_html(outfile=map_path)
 HtmlFile = open(map_path, 'r', encoding='utf-8')
 source_code = HtmlFile.read() 
-st.components.v1.html(source_code, height=600)
+components.v1.html(source_code, height=600)
 
 
