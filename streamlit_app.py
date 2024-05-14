@@ -3,7 +3,7 @@ import leafmap.foliumap as leafmap
 import pandas as pd
 import streamlit.components.v1 as components
 # Load the CSV data
-df = pd.read_csv("app_data.csv")
+df = pd.read_csv("data.csv")
 
 # App title
 st.title('Interactive Lake Map')
