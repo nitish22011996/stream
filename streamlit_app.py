@@ -15,7 +15,7 @@ m = leafmap.Map()
 # Dropdown to select the column for filtering
 option = st.selectbox(
     'Select the column to filter by:',
-    ('ID', 'Climate_Zone', 'Lake_Class', 'Average_Increase_in_temperature', 'P_value')
+    ('ID', 'Climate _Zone', 'Lake_Class', 'Average Increase in temperature', 'P value')
 )
 
 # Check if the selected option is 'ID' or another that requires specific value input
@@ -24,9 +24,11 @@ if option == 'ID':
     value = st.number_input('Enter the value:', step=1)
     filtered_df = df[df[option] == value]
 elif option == 'Lake_Class':
+    # Get unique clarity levels
+    clarity_levels = df['Lake_Class'].unique()
     # Select the clarity level
-    clarity_level = st.selectbox('Select clarity level:', ('Low clarity', 'Moderate clarity', 'High clarity'))
-    filtered_df = df[df[option] == clarity_level]
+    clarity_level = st.selectbox('Select clarity level:', clarity_levels)
+    filtered_df = df[df[option].str.strip() == clarity_level]  # Remove leading/trailing whitespaces before comparison
 else:
     # Number input for min and max values
     min_value = st.number_input('Minimum value:', step=0.01)
