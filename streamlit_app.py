@@ -1,9 +1,10 @@
-import streamlit as st
+iimport streamlit as st
 import leafmap.foliumap as leafmap
 import pandas as pd
 import streamlit.components.v1 as components
+
 # Load the CSV data
-df = pd.read_csv("data.csv")
+df = pd.read_csv("app_data.csv")
 
 # App title
 st.title('Interactive Lake Map')
@@ -14,19 +15,24 @@ m = leafmap.Map()
 # Dropdown to select the column for filtering
 option = st.selectbox(
     'Select the column to filter by:',
-    ( 'ID', 'Climate _Zone', 'Lake_Class', 'Average Increase in temperature', 'P value')
+    ('ID', 'Climate_Zone', 'Lake_Class', 'Average_Increase_in_temperature', 'P_value')
 )
 
-# Check if the selected option is 'osm_id' or another that requires specific value input
-if option == 'ID' :
+# Check if the selected option is 'ID' or another that requires specific value input
+if option == 'ID':
     # Text input for specific value
     value = st.number_input('Enter the value:', step=1)
     filtered_df = df[df[option] == value]
 else:
-    # Number input for min and max values
-    min_value = st.number_input('Minimum value:', step=0.01)
-    max_value = st.number_input('Maximum value:', step=0.01)
-    filtered_df = df[(df[option] >= min_value) & (df[option] <= max_value)]
+    if option == 'Lake_Class':
+        # Select the clarity level
+        clarity_level = st.selectbox('Select clarity level:', ('Low clarity', 'Moderate clarity', 'High clarity'))
+        filtered_df = df[df[option] == clarity_level]
+    else:
+        # Number input for min and max values
+        min_value = st.number_input('Minimum value:', step=0.01)
+        max_value = st.number_input('Maximum value:', step=0.01)
+        filtered_df = df[(df[option] >= min_value) & (df[option] <= max_value)]
 
 # Display filtered lake information
 if not filtered_df.empty:
@@ -45,5 +51,4 @@ m.to_html(outfile=map_path)
 HtmlFile = open(map_path, 'r', encoding='utf-8')
 source_code = HtmlFile.read() 
 components.html(source_code, height=600)
-
 
