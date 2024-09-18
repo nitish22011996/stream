@@ -15,9 +15,9 @@ m = leafmap.Map()
 # Dropdown to select the column for filtering
 option = st.selectbox(
     'Select the column to filter by:',
-    ('ID', 'Climate _Zone', 'Lake_Class', 'Average Increase in temperature', 'P value')
+    ('ID', 'Climate _Zone')
 )
-
+#  'Lake_Class', 'Average Increase in temperature', 'P value'
 # Check if the selected option is 'ID' or another that requires specific value input
 if option == 'ID':
     # Text input for specific value
