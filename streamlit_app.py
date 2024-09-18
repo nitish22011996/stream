@@ -4,7 +4,7 @@ import pandas as pd
 import streamlit.components.v1 as components
 
 # Load the CSV data
-df = pd.read_csv("data.csv")
+df = pd.read_csv("dat.csv")
 
 # App title
 st.title('Interactive Lake Map')
